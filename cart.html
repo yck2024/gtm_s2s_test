@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { text-align: right; margin-top: 20px; font-size: 1.2em; }
+        .remove-btn { color: red; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shopping Cart</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="category.html">Products</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="cv.html">CV</a>
+        </nav>
+    </header>
+    <main class="container">
+        <div id="cart-items"></div>
+        <div id="cart-total" class="total"></div>
+        <button onclick="clearCart()">Clear Cart</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 My E-Commerce Site</p>
+    </footer>
+    <script>
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartTotalDiv = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+                cartTotalDiv.innerHTML = '';
+                return;
+            }
+
+            let tableHtml = '<table><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th><th></th></tr>';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                tableHtml += `
+                    <tr>
+                        <td>${item.title}</td>
+                        <td>$${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td>$${itemTotal.toFixed(2)}</td>
+                        <td><span class="remove-btn" onclick="removeFromCart(${item.id})">Remove</span></td>
+                    </tr>
+                `;
+            });
+
+            tableHtml += '</table>';
+            cartItemsDiv.innerHTML = tableHtml;
+            cartTotalDiv.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+        }
+
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            renderCart();
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>

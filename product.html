@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .product-image { max-width: 100%; }
+        .product-details { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Product Details</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="category.html">Products</a> |
+            <a href="cart.html">Cart</a> |
+            <a href="cv.html">CV</a>
+        </nav>
+    </header>
+    <main class="container">
+        <div id="product-detail"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 My E-Commerce Site</p>
+    </footer>
+    <script>
+        const products = [
+            { id: 1, title: "Laptop", description: "A powerful laptop for all your needs.", link: "product.html?id=1", image_link: "https://cdn.stocksnap.io/img-thumbs/280h/laptop-typing_YBKJ1G35EX.jpg", price: 1200, brand: "TechCorp" },
+            { id: 2, title: "Mouse", description: "A comfortable, ergonomic mouse.", link: "product.html?id=2", image_link: "https://cdn.stocksnap.io/img-thumbs/280h/hand-mouse_R538BDNPAT.jpg", price: 25, brand: "TechCorp" },
+            { id: 3, title: "Keyboard", description: "A mechanical keyboard with RGB lighting.", link: "product.html?id=3", image_link: "https://cdn.stocksnap.io/img-thumbs/280h/keyboard-typing_WTGTEOHQ8X.jpg", price: 75, brand: "TechCorp" },
+            { id: 4, title: "Monitor", description: "A 27-inch 4K monitor.", link: "product.html?id=4", image_link: "https://cdn.stocksnap.io/img-thumbs/280h/desktop-computer_25WP90QOLT.jpg", price: 300, brand: "ViewSonic" },
+            { id: 5, title: "Webcam", description: "A 1080p webcam for video conferencing.", link: "product.html?id=5", image_link: "https://cdn.stocksnap.io/img-thumbs/280h/video-camera_RW5R1EB5RC.jpg", price: 50, brand: "Logi" },
+            { id: 6, title: "Headphones", description: "Noise-cancelling headphones.", link: "product.html?id=6", image_link: "https://cdn.stocksnap.io/img-thumbs/280h/headphones-desk_KKOQ2ZWHO1.jpg", price: 150, brand: "SoundMagic" }
+        ];
+
+        function getProductIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        function findProductById(id) {
+            return products.find(p => p.id === id);
+        }
+
+        function renderProductDetails() {
+            const productId = getProductIdFromUrl();
+            const product = findProductById(productId);
+            const productDetailDiv = document.getElementById('product-detail');
+
+            if (product) {
+                productDetailDiv.innerHTML = `
+                    <img src="${product.image_link}" alt="${product.title}" class="product-image">
+                    <div class="product-details">
+                        <h2>${product.title}</h2>
+                        <p>${product.description}</p>
+                        <p><strong>Brand:</strong> ${product.brand}</p>
+                        <p><strong>Price:</strong> $${product.price}</p>
+                        <button onclick="addToCart(${product.id})">Add to Cart</button>
+                    </div>
+                `;
+            } else {
+                productDetailDiv.innerHTML = '<p>Product not found.</p>';
+            }
+        }
+
+        function addToCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = findProductById(productId);
+
+            if (product) {
+                const existingProduct = cart.find(item => item.id === productId);
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Product added to cart!');
+            }
+        }
+
+        renderProductDetails();
+    </script>
+</body>
+</html>

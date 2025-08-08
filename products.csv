@@ -1,0 +1,7 @@
+id,title,description,link,image_link,price,brand
+1,Laptop,A powerful laptop for all your needs.,product.html?id=1,https://cdn.stocksnap.io/img-thumbs/280h/laptop-typing_YBKJ1G35EX.jpg,1200,TechCorp
+2,Mouse,"A comfortable, ergonomic mouse.",product.html?id=2,https://cdn.stocksnap.io/img-thumbs/280h/hand-mouse_R538BDNPAT.jpg,25,TechCorp
+3,Keyboard,"A mechanical keyboard with RGB lighting.",product.html?id=3,https://cdn.stocksnap.io/img-thumbs/280h/keyboard-typing_WTGTEOHQ8X.jpg,75,TechCorp
+4,Monitor,A 27-inch 4K monitor.,product.html?id=4,https://cdn.stocksnap.io/img-thumbs/280h/desktop-computer_25WP90QOLT.jpg,300,ViewSonic
+5,Webcam,A 1080p webcam for video conferencing.,product.html?id=5,https://cdn.stocksnap.io/img-thumbs/280h/video-camera_RW5R1EB5RC.jpg,50,Logi
+6,Headphones,"Noise-cancelling headphones.",product.html?id=6,https://cdn.stocksnap.io/img-thumbs/280h/headphones-desk_KKOQ2ZWHO1.jpg,150,SoundMagic
