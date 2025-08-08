@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Electronics & Gadgets</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NV9C4RXV');</script>
+    <!-- End Google Tag Manager -->
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><text x="600" y="300" text-anchor="middle" fill="%23999" font-size="24" font-family="Arial">Hero Background</text></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+        
+        .products {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            background: #3498db;
+        }
+        
+        .add-to-cart:hover {
+            background: #2980b9;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NV9C4RXV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <nav class="container">
+            <div class="logo">TechStore</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="trackEvent('navigation', 'click', 'home')">Home</a></li>
+                <li><a href="#" onclick="trackEvent('navigation', 'click', 'products')">Products</a></li>
+                <li><a href="#" onclick="trackEvent('navigation', 'click', 'about')">About</a></li>
+                <li><a href="#" onclick="trackEvent('navigation', 'click', 'contact')">Contact</a></li>
+            </ul>
+            <div class="cart-icon" onclick="viewCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Latest Tech Gadgets</h1>
+            <p>Discover amazing deals on smartphones, laptops, and electronics</p>
+            <a href="#products" class="btn" onclick="trackEvent('hero', 'click', 'shop_now')">Shop Now</a>
+        </div>
+    </section>
+    
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">📱 Product Image</div>
+                    <div class="product-info">
+                        <h3 class="product-title">iPhone 15 Pro</h3>
+                        <p class="product-description">Latest iPhone with advanced camera system and A17 Pro chip</p>
+                        <div class="product-price">$999.00</div>
+                        <button class="btn add-to-cart" onclick="addToCart('iphone-15-pro', 'iPhone 15 Pro', 999.00)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">💻 Product Image</div>
+                    <div class="product-info">
+                        <h3 class="product-title">MacBook Air M3</h3>
+                        <p class="product-description">Ultra-thin laptop with M3 chip for incredible performance</p>
+                        <div class="product-price">$1,299.00</div>
+                        <button class="btn add-to-cart" onclick="addToCart('macbook-air-m3', 'MacBook Air M3', 1299.00)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🎧 Product Image</div>
+                    <div class="product-info">
+                        <h3 class="product-title">AirPods Pro 2</h3>
+                        <p class="product-description">Premium wireless earbuds with active noise cancellation</p>
+                        <div class="product-price">$249.00</div>
+                        <button class="btn add-to-cart" onclick="addToCart('airpods-pro-2', 'AirPods Pro 2', 249.00)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">⌚ Product Image</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Apple Watch Series 9</h3>
+                        <p class="product-description">Advanced health and fitness tracking with always-on display</p>
+                        <div class="product-price">$399.00</div>
+                        <button class="btn add-to-cart" onclick="addToCart('apple-watch-9', 'Apple Watch Series 9', 399.00)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">📷 Product Image</div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sony Alpha A7 IV</h3>
+                        <p class="product-description">Professional mirrorless camera with 33MP full-frame sensor</p>
+                        <div class="product-price">$2,499.00</div>
+                        <button class="btn add-to-cart" onclick="addToCart('sony-a7-iv', 'Sony Alpha A7 IV', 2499.00)">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">🎮 Product Image</div>
+                    <div class="product-info">
+                        <h3 class="product-title">PlayStation 5</h3>
+                        <p class="product-description">Next-gen gaming console with lightning-fast SSD</p>
+                        <div class="product-price">$499.00</div>
+                        <button class="btn add-to-cart" onclick="addToCart('playstation-5', 'PlayStation 5', 499.00)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TechStore. All rights reserved. | This is a demo site for GTM testing purposes.</p>
+        </div>
+    </footer>
+    
+    <div class="notification" id="notification">
+        Product added to cart!
+    </div>
+    
+    <script>
+        // Initialize cart
+        let cart = [];
+        let cartCount = 0;
+        
+        // Initialize dataLayer for GTM
+        window.dataLayer = window.dataLayer || [];
+        
+        // Generic event tracking function
+        function trackEvent(category, action, label, value) {
+            window.dataLayer.push({
+                event: 'custom_event',
+                event_category: category,
+                event_action: action,
+                event_label: label,
+                value: value
+            });
+        }
+        
+        // Add to cart function with GTM tracking
+        function addToCart(productId, productName, price) {
+            // Add to cart logic
+            cart.push({
+                item_id: productId,
+                item_name: productName,
+                price: price,
+                quantity: 1
+            });
+            
+            cartCount++;
+            document.getElementById('cartCount').textContent = cartCount;
+            
+            // Show notification
+            showNotification(`${productName} added to cart!`);
+            
+            // GTM Enhanced Ecommerce - Add to Cart
+            window.dataLayer.push({
+                event: 'add_to_cart',
+                ecommerce: {
+                    currency: 'USD',
+                    value: price,
+                    items: [{
+                        item_id: productId,
+                        item_name: productName,
+                        category: 'Electronics',
+                        quantity: 1,
+                        price: price
+                    }]
+                }
+            });
+            
+            // Track custom event
+            trackEvent('ecommerce', 'add_to_cart', productName, price);
+        }
+        
+        // View cart function
+        function viewCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            let cartSummary = 'Cart Contents:\n\n';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                cartSummary += `${index + 1}. ${item.item_name} - $${item.price}\n`;
+                total += item.price;
+            });
+            
+            cartSummary += `\nTotal: $${total.toFixed(2)}`;
+            alert(cartSummary);
+            
+            // GTM Enhanced Ecommerce - View Cart
+            window.dataLayer.push({
+                event: 'view_cart',
+                ecommerce: {
+                    currency: 'USD',
+                    value: total,
+                    items: cart
+                }
+            });
+            
+            // Simulate checkout process
+            if (confirm('Would you like to proceed to checkout?')) {
+                proceedToCheckout(total);
+            }
+        }
+        
+        // Checkout function
+        function proceedToCheckout(total) {
+            // GTM Enhanced Ecommerce - Begin Checkout
+            window.dataLayer.push({
+                event: 'begin_checkout',
+                ecommerce: {
+                    currency: 'USD',
+                    value: total,
+                    items: cart
+                }
+            });
+            
+            // Simulate checkout completion
+            setTimeout(() => {
+                completePurchase(total);
+            }, 2000);
+            
+            alert('Redirecting to checkout...');
+        }
+        
+        // Complete purchase function
+        function completePurchase(total) {
+            const transactionId = 'T' + Date.now();
+            
+            // GTM Enhanced Ecommerce - Purchase
+            window.dataLayer.push({
+                event: 'purchase',
+                ecommerce: {
+                    transaction_id: transactionId,
+                    value: total,
+                    tax: total * 0.08,
+                    shipping: 10.00,
+                    currency: 'USD',
+                    items: cart
+                }
+            });
+            
+            alert(`Purchase completed! Transaction ID: ${transactionId}`);
+            
+            // Reset cart
+            cart = [];
+            cartCount = 0;
+            document.getElementById('cartCount').textContent = cartCount;
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Track page view
+        window.dataLayer.push({
+            event: 'page_view',
+            page_title: document.title,
+            page_location: window.location.href
+        });
+        
+        // Track scroll depth
+        let maxScroll = 0;
+        window.addEventListener('scroll', () => {
+            const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+            
+            if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+                maxScroll = scrollPercent;
+                trackEvent('engagement', 'scroll', 'depth', scrollPercent);
+            }
+        });
+        
+        // Track time on page
+        let startTime = Date.now();
+        window.addEventListener('beforeunload', () => {
+            const timeSpent = Math.round((Date.now() - startTime) / 1000);
+            trackEvent('engagement', 'time_on_page', 'seconds', timeSpent);
+        });
+    </script>
+</body>
+</html>
