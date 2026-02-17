@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-19R5TY3NRG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-19R5TY3NRG');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechStore - Electronics & Gadgets</title>
@@ -240,19 +249,14 @@
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NV9C4RXV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    
     <header>
         <nav class="container">
             <div class="logo">TechStore</div>
             <ul class="nav-links">
-                <li><a href="#" onclick="trackEvent('navigation', 'click', 'home')">Home</a></li>
-                <li><a href="#" onclick="trackEvent('navigation', 'click', 'products')">Products</a></li>
-                <li><a href="#" onclick="trackEvent('navigation', 'click', 'about')">About</a></li>
-                <li><a href="#" onclick="trackEvent('navigation', 'click', 'contact')">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="category.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="conversion.html">Conversion</a></li>
             </ul>
             <div class="cart-icon" onclick="viewCart()">
                 🛒
